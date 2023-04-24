@@ -97,7 +97,11 @@
     background-color: #e63946;
   }
   
+  text{
+    border: none;
+    border-radius: 5px;
 
+  }
   
   .form-group {
     margin-bottom: 20px;
@@ -139,29 +143,29 @@
 	<main>
 		<form method="post" action="result">
 			{% csrf_token %}
-            <<div class="form-left">
+            <div class="form-left">
 				<label for="input1">Input:</label> 
-				<input type="text" id="input" name="input" >
+				<input type="text" id="input" name="input">
                 <label for="input2">Amount:</label>
-				<input type="text" id="input2" name="input2" required>
+				<input type="text" id="input2" name="input2" value={{amount}}>
                 <label for="input4">Card:</label>
-				<input type="text" id="input4" name="input4" required>
+				<input type="text" id="input4" name="input4" value={{card}}>
                 <label for="input6">Errors?:</label>
-				<input type="text" id="input6" name="input6" required>
+				<input type="text" id="input6" name="input6" value={{errors}}>
                 <label for="input8">Merchant City:</label>
-				<input type="text" id="input8" name="input8" required>
+				<input type="text" id="input8" name="input8" value="{{merchantCity}}">
             </div>
 			<div class="form-right">
 				<label for="input1">User:</label>
-				<input type="text" id="input1" name="input1" required>
+				<input type="text" id="input1" name="input1" value= "{{user}}" >
                 <label for="input3">Use chip:</label>
-				<input type="text" id="input3" name="input3" required>
+				<input type="text" id="input3" name="input3" value="{{useChip}}">
                 <label for="input5">Merchant Name:</label>
-				<input type="text" id="input5" name="input5" required>
+				<input type="text" id="input5" name="input5" value="{{merchantName}}">
                 <label for="input7">Merchant state:</label>
-				<input type="text" id="input7" name="input7" required>
+				<input type="text" id="input7" name="input7" value="{{merchantState}}">
                 <label for="input9">Zip:</label>
-				<input type="text" id="input9" name="input9" required>
+				<input type="text" id="input9" name="input9" value={{zip}}>
             </div>
             
 			<button type="submit" class="btn btn-primary">Calculate</button>

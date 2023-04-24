@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fraud Detection</title>
+</head>
+{% load static %}
+
+{% block page_content %}
+<body>
+<h1>Database</h1>
+<div class="row">
+    <div class="col-md-4"> 
+        <table class="table table-striped table-hover">
+        <thead>
+            <th>#</th>
+            <th>My database</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>id</strong></td>
+                <td><strong>User</strong></td>
+                <td><strong>Merchant_name</strong></td>
+                <td><strong>Merchant_city</strong></td>
+                <td><strong>Merchant_state</strong></td>
+                <td><strong>Zip</strong></td>
+                <td><strong>Use_chip</strong></td>
+                <td><strong>Errors</strong></td>
+                <td><strong>Amount</strong></td>
+                <td><strong>Card</strong></td>
+                <td><strong>IsFraud</strong></td>
+            </tr>
+        {% for i in myDatabase %}
+        <tr>
+           <td><strong>{{ forloop.counter }} </strong></td>
+           {% comment %} <td><strong>{{ i.id}}</strong></td> {% endcomment %}
+           <td><strong>{{ i.User}}</strong></td>
+           <td><strong>{{ i.Merchant_name}}</strong></td>
+           <td><strong>{{ i.Merchant_city}}</strong></td>
+           <td><strong>{{ i.Merchant_state}}</strong></td>
+           <td><strong>{{ i.Zip}}</strong></td>
+           <td><strong>{{ i.Use_chip}}</strong></td>
+           <td><strong>{{ i.Errors}}</strong></td>
+           <td><strong>{{ i.Amount}}</strong></td>
+           <td><strong>{{ i.Card}}</strong></td>
+           <td><strong>{{ i.IsFraud}}</strong></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+    <div>
+</div>
+</body>
+{% endblock %}

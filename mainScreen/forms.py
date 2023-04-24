@@ -1,6 +1,7 @@
 from django import forms
 
 class FraudDetectionForm(forms.Form):
+    choose = forms.CharField(label='Input', max_length=100)
     Amount = forms.CharField(label='Input 2', max_length=100)
     Card = forms.CharField(label='Input 4', max_length=100)
     Errors = forms.CharField(label='Input 6', max_length=100)
