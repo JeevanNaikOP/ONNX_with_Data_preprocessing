@@ -1,0 +1,13 @@
+version: '3'
+services:
+  frauddetection_onnx:
+    env_file: .env
+    container_name: frauddetection_onnx
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      USERNAME: ${USERNAME}
+      PASSWORD: ${PASSWORD}

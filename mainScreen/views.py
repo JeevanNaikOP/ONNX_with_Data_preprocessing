@@ -25,8 +25,8 @@ def result(request):
         }
     
     json_data = {
-            'username' : 'username',
-            'password' : 'password',
+            'username' : 'USERNAME',
+            'password' : 'PASSWORD',
         }
     response = requests.post('https://192.86.32.113:9888/auth/generateToken', json=json_data, headers=header,verify=False)
 
@@ -75,7 +75,7 @@ def result(request):
     payload_scoring.append(json_out[0]['minMaxScaler(Card)'])
     payload_scoring.append(json_out[0]['minMaxScaler(User)'])
     payload_scoring.append(json_out[0]['mms-ce(Errors?)'])
-    payload_scoring.append(json_out[0]['mms-ce(Merchant State)'])
+    payload_scoring.append(json_out[0]['mms-ce(Merchant City)'])
     payload_scoring.append(json_out[0]['mms-ce(Merchant Name)'])
     payload_scoring.append(json_out[0]['mms-ce(Merchant State)'])
     payload_scoring.append(json_out[0]['mms-ce(Use Chip)'])

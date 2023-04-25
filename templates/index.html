@@ -13,12 +13,15 @@
   }
 
   header {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	height: 80px;
 	background-color: #14213d;
 	color: #fff;
+}
+
+.heading{
+  display: flex;
+	justify-content: center;
+	align-items: center;
 }
   
   body {
@@ -38,7 +41,6 @@
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
   }
   
 
@@ -64,25 +66,27 @@
     display: block;
     width: 100%;
     padding: 10px;
-    border: none;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-size: 1.2em;
     color: #555;
     background-color: #f4f4f4;
+    border: 1px solid black;
+    border-radius: 5px;
   }
   
   form input[type="text"]:focus,
   form input[type="password"]:focus,
   form textarea:focus {
-    outline: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
   }
   
   form button[type="submit"] {
     display: block;
     width: 100%;
     padding: 10px;
+    padding-top: 5px !important;
     border: none;
     border-radius: 5px;
     background-color: #14213d;
@@ -97,34 +101,9 @@
     background-color: #e63946;
   }
   
-  text{
-    border: none;
-    border-radius: 5px;
-
-  }
   
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  .form-group:nth-child(9) {
-    margin-bottom: 0;
-  }
-  
-  .form-group input[type="text"],
-  .form-group input[type="password"],
-  .form-group textarea {
-    width: 50%;
-    height: 10px;
-    resize: none;
-  }
-  
-  .form-group label.error {
-    display: block;
-    margin-top: 5px;
-    color: #e63946;
-    font-size: 1em;
-    font-weight: 400;
+  .sub{
+    margin-top: 400px !important;
   }
   
   @media (max-width: 768px) {
@@ -132,20 +111,27 @@
       width: 90%;
     }
   }
+
+
+
+  
   
     </style>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
 	<header>
-		<h1>Fraud Detection</h1>
+		<h1 class="heading">Fraud Detection</h1>
+    <div class="nav" style="padding:10px; align: center">
+    <a style="color: white; text-decoration: none; float: right" href="/mydatabase" > My database</a>
+    </div>
 	</header>
 	<main>
 		<form method="post" action="result">
 			{% csrf_token %}
             <div class="form-left">
 				<label for="input1">Input:</label> 
-				<input type="text" id="input" name="input">
+				<input style="opacity:0.9px;" type="text" id="input" name="input">
                 <label for="input2">Amount:</label>
 				<input type="text" id="input2" name="input2" value={{amount}}>
                 <label for="input4">Card:</label>
@@ -157,7 +143,7 @@
             </div>
 			<div class="form-right">
 				<label for="input1">User:</label>
-				<input type="text" id="input1" name="input1" value= "{{user}}" >
+				<input type="text" id="input1" name="input1" value= "{{user}}" placeholder="">
                 <label for="input3">Use chip:</label>
 				<input type="text" id="input3" name="input3" value="{{useChip}}">
                 <label for="input5">Merchant Name:</label>
@@ -167,8 +153,9 @@
                 <label for="input9">Zip:</label>
 				<input type="text" id="input9" name="input9" value={{zip}}>
             </div>
-            
+            <div class="sub">
 			<button type="submit" class="btn btn-primary">Calculate</button>
+            </div>
 		</form>
 	</main>
     {% load sweetify %}
