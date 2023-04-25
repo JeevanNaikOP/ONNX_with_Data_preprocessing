@@ -4,7 +4,7 @@ import sweetify
 import os
 import json
 import requests
-from .models import MyDataBase
+from .models import scoringDataBase
 
 # Create your views here.
 def index(request):
@@ -25,8 +25,8 @@ def result(request):
         }
     
     json_data = {
-            'username' : os.getenv("USERNAME"),
-            'password' : os.getenv("PASSWORD"),
+            'username' : "ibmuser",
+            'password' : "tcs2040",
         }
     response = requests.post('https://192.86.32.113:9888/auth/generateToken', json=json_data, headers=header,verify=False)
 
@@ -38,7 +38,8 @@ def result(request):
 
     print(choose)
     if choose != '':
-        i = MyDataBase.objects.get(id=choose)
+        choose = int(choose)
+        i = scoringDataBase.objects.get(Id=choose)
 
         user = i.User
         amount = i.Amount
@@ -51,7 +52,7 @@ def result(request):
         zip = i.Zip
 
         form = FraudDetectionForm()
-        return render(request,'index.html',{'form': form, 'user':user, 'amount': amount,'useChip':str(usechip), 'card': card,
+        return render(request,'index.html',{'form': form, 'user_profile':user, 'amount': amount,'useChip':str(usechip), 'card': card,
                                             'merchantName':merchantName,'errors':errors,'merchantState':merchntState,
                                             'merchantCity':merchantCity, 'zip':zip})
     else:
@@ -92,7 +93,7 @@ def result(request):
     try:
         isFraud = json_out[0]['dense_19']['data']
     
-        myDatabase = MyDataBase(User=user,Amount=amount,Use_chip=usechip,Card =card ,Merchant_name=merchantName,Errors=errors,
+        myDatabase = scoringDataBase(User=user,Amount=amount,Use_chip=usechip,Card =card ,Merchant_name=merchantName,Errors=errors,
                             Merchant_state=merchntState,Merchant_city=merchantCity,Zip=zip,IsFraud=isFraud)
         myDatabase.save()
     
@@ -108,7 +109,7 @@ def result(request):
     return render(request,'index.html',{'form': form})
 
 def showTables(request):
-    myDatabase = MyDataBase.objects.all()
+    myDatabase = scoringDataBase.objects.all()
     context = {
         "myDatabase": myDatabase
     }

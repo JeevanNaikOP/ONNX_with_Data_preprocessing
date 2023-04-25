@@ -1,8 +1,8 @@
 from django.db import models
 
 # Create your models here.
-class MyDataBase(models.Model):
-    id = models.CharField(max_length=100,primary_key=True)
+class scoringDataBase(models.Model):
+    Id = models.AutoField(primary_key=True)
     Amount = models.CharField(max_length=100)
     Card = models.CharField(max_length=100)
     Errors = models.CharField(max_length=100)
