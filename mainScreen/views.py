@@ -25,8 +25,8 @@ def result(request):
         }
     
     json_data = {
-            'username' : 'USERNAME',
-            'password' : 'PASSWORD',
+            'username' : os.getenv("USERNAME"),
+            'password' : os.getenv("PASSWORD"),
         }
     response = requests.post('https://192.86.32.113:9888/auth/generateToken', json=json_data, headers=header,verify=False)
 
@@ -35,6 +35,8 @@ def result(request):
     header = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token}
     
     choose = request.POST.get('input')
+
+    print(choose)
     if choose != '':
         i = MyDataBase.objects.get(id=choose)
 
@@ -47,7 +49,7 @@ def result(request):
         merchntState = i.Merchant_state
         merchantCity = i.Merchant_city
         zip = i.Zip
-
+        print('###################################')
         form = FraudDetectionForm()
         return render(request,'index.html',{'form': form, 'user':user, 'amount': amount,'useChip':str(usechip), 'card': card,
                                             'merchantName':merchantName,'errors':errors,'merchantState':merchntState,
