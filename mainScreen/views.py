@@ -49,7 +49,7 @@ def result(request):
         merchntState = i.Merchant_state
         merchantCity = i.Merchant_city
         zip = i.Zip
-        print('###################################')
+
         form = FraudDetectionForm()
         return render(request,'index.html',{'form': form, 'user':user, 'amount': amount,'useChip':str(usechip), 'card': card,
                                             'merchantName':merchantName,'errors':errors,'merchantState':merchntState,
@@ -89,11 +89,16 @@ def result(request):
 
     json_out = (json.loads(response_scoring.text))    
 
-    isFraud = json_out[0]['dense_19']['data']
+    try:
+        isFraud = json_out[0]['dense_19']['data']
     
-    myDatabase = MyDataBase(User=user,Amount=amount,Use_chip=usechip,Card =card ,Merchant_name=merchantName,Errors=errors,
+        myDatabase = MyDataBase(User=user,Amount=amount,Use_chip=usechip,Card =card ,Merchant_name=merchantName,Errors=errors,
                             Merchant_state=merchntState,Merchant_city=merchantCity,Zip=zip,IsFraud=isFraud)
-    myDatabase.save()
+        myDatabase.save()
+    
+    except:
+        sweetify.error(request, 'This transaction is fraud',persistent='Ok')
+        return render(request,'index.html',{'form': form})
 
     if isFraud[0] == 1.0:
         sweetify.error(request, 'This transaction is fraud',persistent='Ok')
