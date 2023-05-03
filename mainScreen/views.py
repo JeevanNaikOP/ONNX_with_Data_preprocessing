@@ -25,9 +25,9 @@ def result(request):
         }
     
     json_data = {
-            'username' : "ibmuser",
-            'password' : "tcs2040",
-        }
+            'username' : os.getenv("USERNAME"),
+            'password' : os.getenv("PASSWORD"),   
+                      }
     response = requests.post('https://192.86.32.113:9888/auth/generateToken', json=json_data, headers=header,verify=False)
 
     token = json.loads(response.text)['token']
@@ -101,6 +101,7 @@ def result(request):
         sweetify.error(request, 'This transaction is fraud',persistent='Ok')
         return render(request,'index.html',{'form': form})
 
+    print(json_out)
     if isFraud[0] == 1.0:
         sweetify.error(request, 'This transaction is fraud',persistent='Ok')
     else:
