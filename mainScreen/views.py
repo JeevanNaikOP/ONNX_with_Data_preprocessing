@@ -69,7 +69,7 @@ def result(request):
     
     payload_scoring = [{"Amount_num":amount,"Card":card,"Errors?":errors,"Merchant City":merchantCity,"Merchant Name":merchantName,"Merchant State":merchntState,"Use Chip":usechip,"User":user,"Zip":zip}]
 
-    response_scoring = requests.post('http://192.86.32.113:6001/iml/v2/scoring/online/c20f83d8-8ccc-4eda-8b7f-f95173b4999d', json=payload_scoring, headers=header,verify=False)
+    response_scoring = requests.post('http://192.86.32.113:6001/iml/v2/scoring/online/bbf9ef27-c1a5-4f49-ba04-239b2f041257', json=payload_scoring, headers=header,verify=False)
 
     json_out = (json.loads(response_scoring.text))
 
@@ -86,7 +86,7 @@ def result(request):
 
     payload_scoring = [{"dense_16_input": payload_scoring}]
 
-    response_scoring = requests.post('http://192.86.32.113:6001/iml/v2/scoring/online/7652bce2-3da0-4f82-ae49-640ebd93fd3d', json=payload_scoring, headers=header,verify=False)
+    response_scoring = requests.post('http://192.86.32.113:6001/iml/v2/scoring/online/116eed64-1544-4cee-9238-9d2bc0a76efd', json=payload_scoring, headers=header,verify=False)
 
     json_out = (json.loads(response_scoring.text))    
 
